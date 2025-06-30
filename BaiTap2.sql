@@ -1,0 +1,28 @@
+CREATE DATABASE cybersoft_shop;
+USE cybersoft_shop;
+
+CREATE TABLE sanpham(
+	MaSP INT PRIMARY KEY,
+	TenSP VARCHAR(100),
+	MoTa TEXT,
+	Gia DOUBLE
+);
+
+CREATE TABLE loaisanpham(
+	MaLoaiSP INT PRIMARY KEY,
+	TenLoaiSP VARCHAR(100)
+);
+
+CREATE TABLE hoadon(
+	MaHD INT PRIMARY KEY,
+	NgayMua DATE
+);
+
+CREATE TABLE khachhang(
+	MaKH INT PRIMARY KEY,
+	Ho VARCHAR(50),
+	Ten VARCHAR(50),
+	DiaChi VARCHAR(150),
+	SoDT VARCHAR(100),
+	Email VARCHAR(100)
+);
