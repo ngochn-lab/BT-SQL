@@ -169,13 +169,24 @@ LEFT JOIN Borrowings br ON m.MemberID = br.MemberID
 GROUP BY m.Name;
 
 -- Liệt kê các thành viên đã mượn sách thể loại “Tiểu thuyết” ít nhất 2 lần
-
+SELECT m.MemberID, m.Name, COUNT(*) AS SoLanMuon
+FROM Members m
+JOIN Borrowings br ON m.MemberID = br.MemberID
+JOIN Books b ON br.BookID = b.BookID
+WHERE b.Genre = 'Tiểu thuyết'
+GROUP BY m.MemberID, m.Name
+HAVING COUNT(*) >= 2;
 
 -- Tìm thành viên đã mượn sách nhưng chưa trả .
-
+SELECT DISTINCT m.MemberID, m.Name
+FROM Members m
+JOIN Borrowings br ON m.MemberID = br.MemberID
+WHERE br.ReturnDate IS NULL;
 
 -- Liệt kê 3 thể loại sách được mượn nhiều nhất
-
-
-
-
+SELECT b.Genre, COUNT(*) AS SoLanMuon
+FROM Borrowings br
+JOIN Books b ON br.BookID = b.BookID
+GROUP BY b.Genre
+ORDER BY SoLanMuon DESC
+LIMIT 3;
